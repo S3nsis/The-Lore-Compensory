@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jersey Devil - CryptidPedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5f2d;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        .notice {
+            background-color: #fef6e7;
+            border: 1px solid #f0e0c0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CryptidPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search cryptids...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="jersey-devil.html">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="#">All Cryptids</a></li>
+                <li><a href="#">Recent Sightings</a></li>
+                <li><a href="#">Random Cryptid</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Featured Cryptids</h3>
+            <ul>
+                <li><a href="index.html">Bigfoot</a></li>
+                <li><a href="mothman.html">Mothman</a></li>
+                <li><a href="chupacabra.html">Chupacabra</a></li>
+                <li><a href="loch-ness-monster.html">Loch Ness Monster</a></li>
+                <li><a href="jersey-devil.html">Jersey Devil</a></li>
+                <li><a href="wendigo.html">Wendigo</a></li>
+            </ul>
+
+            <h3 style="margin-top: 25px;">By Type</h3>
+            <ul>
+                <li><a href="#">Humanoids</a></li>
+                <li><a href="#">Flying Creatures</a></li>
+                <li><a href="#">Aquatic</a></li>
+                <li><a href="#">Land Animals</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Jersey Devil</h1>
+
+            <div class="notice">
+                <strong>Note:</strong> This article documents a cryptid from folklore and legend. The existence of this creature has not been scientifically verified.
+            </div>
+            
+            <div class="infobox">
+                <h3>Jersey Devil</h3>
+                <img src="https://via.placeholder.com/280x200/8b0000/FFFFFF?text=Jersey+Devil" alt="Jersey Devil illustration">
+                <table>
+                    <tr>
+                        <td>Other names:</td>
+                        <td>Leeds Devil</td>
+                    </tr>
+                    <tr>
+                        <td>Region:</td>
+                        <td>Pine Barrens, New Jersey, USA</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>Flying cryptid</td>
+                    </tr>
+                    <tr>
+                        <td>Origin legend:</td>
+                        <td>1735</td>
+                    </tr>
+                    <tr>
+                        <td>Habitat:</td>
+                        <td>Forests, particularly Pine Barrens</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>Winged creature with hooves, bat wings, and a forked tail</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>The Jersey Devil</strong>, also known as the <strong>Leeds Devil</strong>, is a legendary creature from the folklore of the Pine Barrens region of southern New Jersey. According to legend, the creature is described as a flying biped with hooves, bat-like wings, a horse-like head, and a forked tail. The Jersey Devil has been a part of local folklore for over 250 years and remains one of the most enduring cryptid legends in American history.</p>
+
+            <p>The legend centers on the vast, sparsely populated Pine Barrens, a heavily forested area covering over one million acres of southern New Jersey. The creature has become the state's most famous folklore figure and serves as the unofficial symbol of the region, even lending its name to New Jersey's professional hockey team.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#origin">Origin Legend</a></li>
+                    <li>2. <a href="#descriptions">Physical Description</a></li>
+                    <li>3. <a href="#1909">The 1909 Phenomenon</a></li>
+                    <li>4. <a href="#sightings">Notable Sightings</a></li>
+                    <li>5. <a href="#cultural">Cultural Impact</a></li>
+                    <li>6. <a href="#interpretations">Folkloric Interpretations</a></li>
+                </ul>
+            </div>
+
+            <h2 id="origin">Origin Legend</h2>
+            <p>The most popular origin story of the Jersey Devil dates to 1735 and involves a woman known in folklore as Mother Leeds. According to the tale, Mother Leeds discovered she was pregnant with her thirteenth child and, in frustration, cursed the unborn baby, exclaiming that it would be a devil. When the child was born, it appeared normal at first but then transformed into a creature with hooves, a goat's head, bat wings, and a forked tail. The creature allegedly attacked those present at the birth before flying up the chimney and escaping into the Pine Barrens.</p>
+
+            <p>Historical records show that a Daniel Leeds was a real person who lived in the area during the early 18th century and was involved in local political and religious controversies. Some historians suggest the "devil" legend may have originated as political propaganda against the Leeds family, who published almanacs that competed with Benjamin Franklin's publications and held unpopular views.</p>
+
+            <h3>Alternative Origin Stories</h3>
+            <p>Several variations of the origin story exist in local folklore. Some versions claim the creature was the result of a curse placed on the Leeds family by a Gypsy woman they had wronged. Other tales suggest the child was born deformed and was hidden away in the Pine Barrens by the family, giving rise to the monster stories. These variations reflect the evolution of oral folklore traditions over centuries.</p>
+
+            <h2 id="descriptions">Physical Description</h2>
+            <p>Descriptions of the Jersey Devil have varied throughout the centuries, but certain characteristics appear consistently in the folklore. The creature is typically described as being three to four feet tall when on the ground, with a wingspan of several feet. The head is usually described as resembling a horse or goat, with prominent horns in some accounts.</p>
+
+            <p>The body is depicted as kangaroo-like or similar to a large dog, muscular and covered in dark fur or leathery skin. The creature is said to have cloven hooves on its hind legs and clawed hands on shorter front limbs. Large bat-like wings allow it to fly, and a long, pointed tail, often described as forked, completes the description. The creature reportedly emits blood-curdling screams that echo through the Pine Barrens.</p>
+
+            <h2 id="1909">The 1909 Phenomenon</h2>
+            <p>The most famous period in Jersey Devil folklore occurred during one week in January 1909, when thousands of people throughout New Jersey and neighboring states reported seeing the creature. This episode, often called the "Phenomenal Week," saw reports from Bristol, Pennsylvania to Atlantic City, New Jersey.</p>
+
+            <p>During this week, residents reported strange tracks in the snow, eerie cries in the night, and sightings of a winged creature. Schools closed, factories shut down, and groups of armed citizens patrolled the streets. The Philadelphia Zoo offered a reward for the creature's capture. Footprints found in the snow during this period showed an unusual pattern that did not match any known animal.</p>
+
+            <p>Newspapers extensively covered the sightings, with the Philadelphia Evening Bulletin and other publications printing numerous eyewitness accounts. Some of these reports came from police officers, government officials, and other credible witnesses, lending weight to the folklore. The mass sighting phenomenon ended as suddenly as it began, with reports tapering off by the end of January.</p>
+
+            <h2 id="sightings">Notable Sightings in Legend</h2>
+            
+            <h3>Early Accounts</h3>
+            <p>Beyond the origin story, early documented references to Devil-like creatures in the Pine Barrens appear in folklore collections from the late 18th and early 19th centuries. Commodore Stephen Decatur, a naval hero, allegedly encountered the creature in the early 1800s while testing cannons at the Hanover Iron Works. According to the tale, he fired upon a flying creature but it continued on undamaged.</p>
+
+            <h3>20th Century Reports</h3>
+            <p>Throughout the 20th century, sporadic sightings continued to be reported, particularly from people traveling through or living near the Pine Barrens. In the 1960s and 1970s, new waves of reports emerged, often coinciding with periods of increased media attention to the legend. Residents reported finding unusual tracks, hearing strange screams, and occasionally glimpsing a large flying creature.</p>
+
+            <h3>Modern Era</h3>
+            <p>Contemporary sightings continue to be reported occasionally, though less frequently than in earlier periods. The advent of cameras and later smartphones has not produced definitive photographic evidence, though some ambiguous images have been shared online and debated among enthusiasts of the legend.</p>
+
+            <h2 id="cultural">Cultural Impact</h2>
+            <p>The Jersey Devil has become deeply embedded in New Jersey culture and identity. The creature serves as a symbol of the state's unique character and mysterious Pine Barrens region. The professional hockey team, the New Jersey Devils, adopted the name in 1982, bringing the legend to a national sports audience.</p>
+
+            <p>The Pine Barrens region itself has embraced the legend as part of its cultural heritage. Local businesses, festivals, and tourist attractions incorporate Jersey Devil imagery and themes. The creature appears in literature, films, television shows, and video games, often portrayed as a guardian of the forest or a misunderstood creature rather than purely malevolent.</p>
+
+            <h2 id="interpretations">Folkloric Interpretations</h2>
+            
+            <h3>Social and Political Origins</h3>
+            <p>Some folklorists interpret the Jersey Devil legend as having roots in political and religious conflicts of colonial New Jersey. The Leeds family's controversial political and religious positions may have led opponents to create or embellish stories that portrayed them negatively, eventually evolving into the monster legend.</p>
+
+            <h3>Environmental Symbolism</h3>
+            <p>The Jersey Devil has been interpreted as a personification of the wild, untamed nature of the Pine Barrens. The vast wilderness area, with its dense forests and unusual ecology, naturally inspired tales of mysterious creatures. The legend may represent both fear of the unknown wilderness and respect for nature's power.</p>
+
+            <h3>Mass Hysteria Analysis</h3>
+            <p>The 1909 phenomenon has been studied as a possible example of mass hysteria or social contagion, where initial reports led to increased attention and more sightings, creating a self-reinforcing cycle. This interpretation does not necessarily deny that people saw something unusual, but suggests the social and psychological context shaped how experiences were interpreted and reported.</p>
+
+            <h3>Indigenous Connections</h3>
+            <p>Some researchers have noted similarities between Jersey Devil descriptions and creatures from Lenape folklore, the indigenous people who originally inhabited the region. While direct connections are difficult to establish, the overlap suggests the legend may incorporate elements from earlier native traditions about the Pine Barrens.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>CryptidPedia - Documenting Cryptids in Folklore and Legend</p>
+        <p>Content available under Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
