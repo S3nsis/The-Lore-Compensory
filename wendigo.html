@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wendigo - CryptidPedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5f2d;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        .notice {
+            background-color: #fef6e7;
+            border: 1px solid #f0e0c0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .cultural-notice {
+            background-color: #e7f3fe;
+            border: 1px solid #b3d9ff;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CryptidPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search cryptids...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="wendigo.html">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="#">All Cryptids</a></li>
+                <li><a href="#">Recent Sightings</a></li>
+                <li><a href="#">Random Cryptid</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Featured Cryptids</h3>
+            <ul>
+                <li><a href="index.html">Bigfoot</a></li>
+                <li><a href="mothman.html">Mothman</a></li>
+                <li><a href="chupacabra.html">Chupacabra</a></li>
+                <li><a href="loch-ness-monster.html">Loch Ness Monster</a></li>
+                <li><a href="jersey-devil.html">Jersey Devil</a></li>
+                <li><a href="wendigo.html">Wendigo</a></li>
+            </ul>
+
+            <h3 style="margin-top: 25px;">By Type</h3>
+            <ul>
+                <li><a href="#">Humanoids</a></li>
+                <li><a href="#">Flying Creatures</a></li>
+                <li><a href="#">Aquatic</a></li>
+                <li><a href="#">Land Animals</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Wendigo</h1>
+
+            <div class="notice">
+                <strong>Note:</strong> This article documents a cryptid from folklore and legend. The existence of this creature has not been scientifically verified.
+            </div>
+
+            <div class="cultural-notice">
+                <strong>Cultural Respect Notice:</strong> The Wendigo originates from the sacred traditions and oral histories of Algonquian-speaking peoples. This article attempts to document the folklore respectfully while acknowledging it is part of living Indigenous cultures.
+            </div>
+            
+            <div class="infobox">
+                <h3>Wendigo</h3>
+                <img src="https://via.placeholder.com/280x200/4d4d4d/FFFFFF?text=Wendigo" alt="Wendigo illustration">
+                <table>
+                    <tr>
+                        <td>Other names:</td>
+                        <td>Windigo, Witiko, Wittikow</td>
+                    </tr>
+                    <tr>
+                        <td>Region:</td>
+                        <td>Northern United States, Canada</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>Malevolent humanoid spirit/creature</td>
+                    </tr>
+                    <tr>
+                        <td>Cultural origin:</td>
+                        <td>Algonquian peoples (Ojibwe, Cree, others)</td>
+                    </tr>
+                    <tr>
+                        <td>Habitat:</td>
+                        <td>Northern forests, particularly during winter</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>Gaunt, emaciated humanoid associated with winter, starvation, and cannibalism</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>The Wendigo</strong> (also spelled Windigo, Witiko, or Wittikow) is a malevolent supernatural entity from the folklore and spiritual traditions of Algonquian-speaking peoples of the northern United States and Canada. The creature appears in the oral traditions of the Ojibwe, Cree, Innu, and other related Indigenous nations, where it serves as both a literal monster in stories and a powerful metaphor for dangerous human behaviors.</p>
+
+            <p>In traditional Algonquian belief systems, the Wendigo is strongly associated with winter, starvation, and the taboo act of cannibalism. The creature represents one of the most feared entities in these cultural traditions and carries deep spiritual and moral significance beyond its role as a simple monster story.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#folklore">Traditional Folklore</a></li>
+                    <li>2. <a href="#descriptions">Traditional Descriptions</a></li>
+                    <li>3. <a href="#cultural">Cultural Significance</a></li>
+                    <li>4. <a href="#transformation">Transformation Beliefs</a></li>
+                    <li>5. <a href="#historical">Historical Accounts</a></li>
+                    <li>6. <a href="#modern">Modern Interpretations</a></li>
+                    <li>7. <a href="#appropriation">Cultural Appropriation Concerns</a></li>
+                </ul>
+            </div>
+
+            <h2 id="folklore">Traditional Folklore</h2>
+            <p>Within Algonquian oral traditions, the Wendigo appears as a cautionary figure in stories passed down through generations. These narratives often describe the Wendigo as a person who has been transformed into a monster through engaging in cannibalism or being possessed by a malevolent spirit during times of extreme hardship and starvation.</p>
+
+            <p>The folklore serves multiple functions within Indigenous communities. It warns against the dangers of greed, excess, and the violation of cultural taboos. The stories emphasize the importance of sharing resources, particularly during harsh winters when food might be scarce. The Wendigo represents what happens when someone puts individual survival above the welfare of the community.</p>
+
+            <h2 id="descriptions">Traditional Descriptions</h2>
+            
+            <h3>Physical Characteristics</h3>
+            <p>Traditional descriptions of the Wendigo vary among different Algonquian groups, but common elements appear across the folklore. The creature is typically described as unnaturally tall and gaunt, with an emaciated, skeletal appearance that reflects its association with starvation. The skin is often described as pale, ash-colored, or stretched tightly over bones.</p>
+
+            <p>In many traditional accounts, the Wendigo is described as having glowing eyes, long yellowed fangs, and a heart of ice. Some versions describe it as having antlers or horns like a deer. Despite its skeletal appearance, the creature is said to possess immense strength and the ability to move swiftly through winter forests. A persistent characteristic across traditions is that no matter how much the Wendigo consumes, it never feels satisfied and grows larger with each victim.</p>
+
+            <h3>Supernatural Abilities</h3>
+            <p>Folklore attributes various supernatural powers to the Wendigo. It is said to be able to mimic human voices to lure victims, move silently despite its size, and survive the harshest winter conditions. Some traditions describe it as capable of possessing humans, driving them to madness and cannibalism. The creature is strongly associated with winter storms and bitter cold.</p>
+
+            <h2 id="cultural">Cultural Significance</h2>
+            <p>The Wendigo holds profound cultural and spiritual significance in Algonquian traditions. Beyond being a creature of folklore, it represents a complex set of cultural values and warnings. The concept embodies the dangers of selfishness, greed, and the violation of social bonds that are essential for community survival in harsh northern environments.</p>
+
+            <p>In traditional contexts, the Wendigo serves as a powerful metaphor for behaviors that threaten community cohesion. During long, difficult winters when resources were limited, the sharing of food and cooperation were essential for survival. The Wendigo legend reinforced these values by illustrating the horrific consequences of putting individual needs above the community.</p>
+
+            <h3>Spiritual Dimensions</h3>
+            <p>Within Indigenous spiritual frameworks, the Wendigo was not merely folklore but part of a broader understanding of spiritual reality. Medicine people and spiritual leaders in various communities had specific protocols for dealing with Wendigo possession or encounters. These spiritual practices were serious matters, not entertainment, and remain sacred to many Indigenous communities today.</p>
+
+            <h2 id="transformation">Transformation Beliefs</h2>
+            <p>A significant aspect of Wendigo folklore involves the belief that humans could be transformed into Wendigos. This transformation was traditionally thought to occur through several means, most commonly through engaging in cannibalism, being possessed by a Wendigo spirit, or through a curse. Some traditions held that even harboring thoughts of cannibalism during times of starvation could lead to transformation.</p>
+
+            <p>The concept of Wendigo transformation served as a powerful deterrent against cannibalism, even in the most desperate circumstances. Stories emphasized that once transformed, a person would lose their humanity entirely and become an insatiable monster that would inevitably turn on their own family and community.</p>
+
+            <h2 id="historical">Historical Accounts</h2>
+            <p>Historical records from the 19th and early 20th centuries document cases where Indigenous individuals were said to be suffering from "Wendigo psychosis," a term used by Western observers to describe a culture-bound syndrome involving fear of transformation into a Wendigo, along with symptoms including depression, violent behavior, and an intense craving for human flesh.</p>
+
+            <p>Several documented cases from this period involved community members who believed themselves or others to be transforming into Wendigos. These situations were treated seriously within communities, sometimes resulting in the execution of the afflicted person to prevent their full transformation. However, modern scholars debate the nature and interpretation of these historical accounts, noting the cultural bias and misunderstanding present in many Western recordings of Indigenous practices.</p>
+
+            <h2 id="modern">Modern Interpretations</h2>
+            <p>In contemporary times, the Wendigo has been analyzed through various academic lenses. Anthropologists have studied it as an example of how folklore reinforces cultural values and social cohesion. Psychologists have examined the concept of "Wendigo psychosis" within the context of culture-bound syndromes, though this Western medical interpretation is contested.</p>
+
+            <p>Some modern Indigenous writers and scholars have reclaimed the Wendigo narrative, using it as a metaphor for colonialism, capitalism, and environmental destruction. They draw parallels between the Wendigo's insatiable hunger and greed with modern systems that consume resources without regard for sustainability or community wellbeing.</p>
+
+            <h2 id="appropriation">Cultural Appropriation Concerns</h2>
+            <p>Many Indigenous people and scholars have expressed concern about the appropriation and misrepresentation of the Wendigo in popular culture. The creature appears frequently in horror films, video games, and literature, often stripped of its cultural context and spiritual significance.</p>
+
+            <p>Indigenous writers have noted that the Wendigo is part of living spiritual traditions, not merely historical folklore available for entertainment purposes. The casual use of the Wendigo in popular media, particularly when created without input from or respect for Algonquian communities, is seen as a form of cultural appropriation that disrespects Indigenous beliefs and contributes to the erasure of authentic Indigenous voices and stories.</p>
+
+            <p>Several Indigenous authors and creators have called for greater respect and consultation when the Wendigo appears in media, emphasizing that it represents sacred knowledge and cultural teachings rather than a generic monster available for commercial exploitation.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>CryptidPedia - Documenting Cryptids in Folklore and Legend</p>
+        <p>Content available under Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
