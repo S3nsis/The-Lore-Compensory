@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chupacabra - CryptidPedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5f2d;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        .notice {
+            background-color: #fef6e7;
+            border: 1px solid #f0e0c0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CryptidPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search cryptids...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="chupacabra.html">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="#">All Cryptids</a></li>
+                <li><a href="#">Recent Sightings</a></li>
+                <li><a href="#">Random Cryptid</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Featured Cryptids</h3>
+            <ul>
+                <li><a href="index.html">Bigfoot</a></li>
+                <li><a href="mothman.html">Mothman</a></li>
+                <li><a href="chupacabra.html">Chupacabra</a></li>
+                <li><a href="loch-ness-monster.html">Loch Ness Monster</a></li>
+                <li><a href="jersey-devil.html">Jersey Devil</a></li>
+                <li><a href="wendigo.html">Wendigo</a></li>
+            </ul>
+
+            <h3 style="margin-top: 25px;">By Type</h3>
+            <ul>
+                <li><a href="#">Humanoids</a></li>
+                <li><a href="#">Flying Creatures</a></li>
+                <li><a href="#">Aquatic</a></li>
+                <li><a href="#">Land Animals</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Chupacabra</h1>
+
+            <div class="notice">
+                <strong>Note:</strong> This article documents a cryptid from folklore and legend. The existence of this creature has not been scientifically verified.
+            </div>
+            
+            <div class="infobox">
+                <h3>Chupacabra</h3>
+                <img src="https://via.placeholder.com/280x200/8b4513/FFFFFF?text=Chupacabra" alt="Chupacabra illustration">
+                <table>
+                    <tr>
+                        <td>Other names:</td>
+                        <td>Goat Sucker</td>
+                    </tr>
+                    <tr>
+                        <td>Region:</td>
+                        <td>Latin America, Caribbean, Southern USA</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>Vampiric cryptid</td>
+                    </tr>
+                    <tr>
+                        <td>First reported:</td>
+                        <td>March 1995, Puerto Rico</td>
+                    </tr>
+                    <tr>
+                        <td>Habitat:</td>
+                        <td>Rural and agricultural areas</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>Reptilian creature or hairless canine that drains blood from livestock</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>Chupacabra</strong>, meaning "goat sucker" in Spanish, is a cryptid that emerged in Latin American and Caribbean folklore in the mid-1990s. The creature is primarily associated with reports of livestock deaths, particularly goats, chickens, and other farm animals found drained of blood through small puncture wounds.</p>
+
+            <p>The legend originated in Puerto Rico in 1995 and quickly spread throughout Latin America, Mexico, and into the southern United States. The chupacabra has become one of the most widely recognized cryptids in modern folklore, with two distinct descriptions emerging from different regions and time periods.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#origins">Origins in Folklore</a></li>
+                    <li>2. <a href="#descriptions">Regional Descriptions</a></li>
+                    <li>3. <a href="#incidents">Notable Incidents</a></li>
+                    <li>4. <a href="#spread">Geographic Spread</a></li>
+                    <li>5. <a href="#cultural">Cultural Impact</a></li>
+                    <li>6. <a href="#explanations">Alternative Explanations</a></li>
+                </ul>
+            </div>
+
+            <h2 id="origins">Origins in Folklore</h2>
+            <p>The chupacabra legend began in March 1995 in the town of Canóvanas, Puerto Rico, when eight sheep were discovered dead with three puncture wounds in their chests and completely drained of blood. Over the following months, similar incidents were reported across the island, with hundreds of animals found dead under mysterious circumstances.</p>
+
+            <p>The name "chupacabra" was reportedly first used by Puerto Rican comedian and television personality Silverio Pérez, and it quickly caught on in media coverage of the livestock deaths. The legend spread rapidly through Spanish-language media and word of mouth, becoming a major topic of discussion throughout Puerto Rico and neighboring islands.</p>
+
+            <h2 id="descriptions">Regional Descriptions</h2>
+            
+            <h3>Puerto Rican Description</h3>
+            <p>In the original Puerto Rican folklore, the chupacabra was described as a reptilian creature standing approximately three to four feet tall. Witnesses described it as having leathery or scaly greenish-gray skin, a row of spines or quills running down its back, and large, oval-shaped eyes that glowed red. The creature was said to hop like a kangaroo and had pronounced fangs or sharp teeth.</p>
+
+            <p>Early accounts described the creature as bipedal with powerful hind legs and small arms with clawed hands. Some reports included details of bat-like wings or the ability to fly short distances. The being was said to emit a sulfurous odor and make hissing or screeching sounds.</p>
+
+            <h3>Mainland Description</h3>
+            <p>As the legend spread to Mexico and the southern United States in the early 2000s, a different description emerged. In these regions, the chupacabra was more commonly described as resembling a hairless dog or coyote with pronounced spinal ridges, unusual eye sockets, fangs, and claws. This version was typically described as quadrupedal rather than bipedal.</p>
+
+            <p>This canine-like description became dominant in Mexican and American folklore, particularly in Texas and the Southwest, where several specimens of hairless, unusual-looking animals were found and attributed to the chupacabra legend.</p>
+
+            <h2 id="incidents">Notable Incidents in Folklore</h2>
+            
+            <h3>Puerto Rico Wave (1995-1996)</h3>
+            <p>The initial wave of chupacabra reports in Puerto Rico involved hundreds of reported livestock deaths across the island. Farmers discovered their animals with puncture wounds and allegedly drained of blood. Some witnesses claimed to have seen the creature, describing the reptilian being that would become the classic Puerto Rican version of the legend.</p>
+
+            <h3>Mexican Reports (2000s)</h3>
+            <p>The legend gained new momentum in Mexico in the early 2000s, with numerous reports from rural communities. These incidents typically involved the discovery of dead livestock with similar characteristics to the Puerto Rican cases, though the described creature more often resembled the hairless canine version.</p>
+
+            <h3>Texas and the Southwest</h3>
+            <p>In the mid-2000s, several ranchers in Texas reported livestock deaths and sightings consistent with chupacabra folklore. Some unusual animal carcasses were found in the region, which locals claimed were chupacabra specimens, though these were typically identified by experts as coyotes or dogs with mange.</p>
+
+            <h2 id="spread">Geographic Spread</h2>
+            <p>From its origins in Puerto Rico, the chupacabra legend spread rapidly throughout Latin America. Reports emerged from Mexico, Chile, Brazil, and numerous other countries. The folklore adapted to local contexts, with the creature's description and behavior varying somewhat by region.</p>
+
+            <p>In the United States, chupacabra reports became common in southern states, particularly Texas, Arizona, and New Mexico. The legend became integrated into local folklore, particularly in communities with strong cultural ties to Latin America.</p>
+
+            <h2 id="cultural">Cultural Impact</h2>
+            <p>The chupacabra has become a significant figure in contemporary Latin American folklore and popular culture. The creature appears in films, television shows, literature, and art throughout Latin America and the United States. It has become a cultural touchstone representing rural fears and the intersection of traditional folklore with modern media.</p>
+
+            <p>The legend has been interpreted in various ways, from a literal creature to a symbol of economic anxiety, environmental concerns, or the impact of modernization on traditional rural communities. In some areas, the chupacabra has become a source of local pride and tourism, similar to other cryptid legends.</p>
+
+            <h2 id="explanations">Alternative Explanations in Folklore Studies</h2>
+            <p>Folklorists and researchers have noted that many alleged chupacabra specimens have been identified as known animals suffering from mange, a skin disease that causes hair loss and gives animals an unusual, sometimes frightening appearance. Coyotes, dogs, and raccoons with severe mange have been mistaken for the creature.</p>
+
+            <p>The legend has been analyzed as a modern folklore phenomenon, with researchers noting how it spread through media and adapted to different cultural contexts. The timing of the original Puerto Rican reports has been connected to economic stress and anxiety in the region during the 1990s, suggesting the folklore may have served as an expression of broader social concerns.</p>
+
+            <p>Some folklore scholars have drawn connections between the chupacabra legend and earlier vampire folklore from European and Latin American traditions, noting similarities in the blood-draining aspect and nocturnal behavior attributed to the creature.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>CryptidPedia - Documenting Cryptids in Folklore and Legend</p>
+        <p>Content available under Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
