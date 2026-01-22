@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loch Ness Monster - CryptidPedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5f2d;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        .notice {
+            background-color: #fef6e7;
+            border: 1px solid #f0e0c0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CryptidPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search cryptids...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="loch-ness-monster.html">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="#">All Cryptids</a></li>
+                <li><a href="#">Recent Sightings</a></li>
+                <li><a href="#">Random Cryptid</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Featured Cryptids</h3>
+            <ul>
+                <li><a href="index.html">Bigfoot</a></li>
+                <li><a href="mothman.html">Mothman</a></li>
+                <li><a href="chupacabra.html">Chupacabra</a></li>
+                <li><a href="loch-ness-monster.html">Loch Ness Monster</a></li>
+                <li><a href="jersey-devil.html">Jersey Devil</a></li>
+                <li><a href="wendigo.html">Wendigo</a></li>
+            </ul>
+
+            <h3 style="margin-top: 25px;">By Type</h3>
+            <ul>
+                <li><a href="#">Humanoids</a></li>
+                <li><a href="#">Flying Creatures</a></li>
+                <li><a href="#">Aquatic</a></li>
+                <li><a href="#">Land Animals</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Loch Ness Monster</h1>
+
+            <div class="notice">
+                <strong>Note:</strong> This article documents a cryptid from folklore and legend. The existence of this creature has not been scientifically verified.
+            </div>
+            
+            <div class="infobox">
+                <h3>Loch Ness Monster</h3>
+                <img src="https://via.placeholder.com/280x200/2b5876/FFFFFF?text=Nessie" alt="Loch Ness Monster illustration">
+                <table>
+                    <tr>
+                        <td>Other names:</td>
+                        <td>Nessie</td>
+                    </tr>
+                    <tr>
+                        <td>Region:</td>
+                        <td>Loch Ness, Scottish Highlands</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>Aquatic cryptid</td>
+                    </tr>
+                    <tr>
+                        <td>First reported:</td>
+                        <td>Early accounts from 6th century, modern era 1930s</td>
+                    </tr>
+                    <tr>
+                        <td>Habitat:</td>
+                        <td>Loch Ness (freshwater lake)</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>Large aquatic creature with long neck and humped back</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>The Loch Ness Monster</strong>, affectionately known as <strong>Nessie</strong>, is a creature from Scottish folklore said to inhabit Loch Ness, a large, deep freshwater loch in the Scottish Highlands. The legend describes a large aquatic animal with a long neck, small head, and one or more humps protruding from the water.</p>
+
+            <p>Stories of a mysterious creature in Loch Ness date back centuries, with early accounts appearing in Scottish folklore and historical records. The modern legend gained international attention in the 1930s and has since become one of the most famous cryptid stories in the world, making Loch Ness a major tourist destination.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#early">Early Folklore</a></li>
+                    <li>2. <a href="#modern">Modern Era Sightings</a></li>
+                    <li>3. <a href="#descriptions">Physical Descriptions</a></li>
+                    <li>4. <a href="#famous">Famous Evidence</a></li>
+                    <li>5. <a href="#investigations">Search Efforts</a></li>
+                    <li>6. <a href="#cultural">Cultural Impact</a></li>
+                    <li>7. <a href="#similar">Similar Lake Monsters</a></li>
+                </ul>
+            </div>
+
+            <h2 id="early">Early Folklore</h2>
+            <p>The earliest known reference to a creature in the vicinity of Loch Ness appears in the "Life of St. Columba" by Adomnán, written in the 7th century. This account describes an incident in the year 565 CE where St. Columba encountered a "water beast" in the River Ness. According to the tale, the creature had attacked a man, and Columba commanded it to retreat, which it reportedly did.</p>
+
+            <p>Throughout the centuries, local Scottish folklore contained various tales of water spirits and creatures inhabiting lochs and rivers. These stories were part of the broader tradition of Celtic water mythology, which featured kelpies, each-uisge, and other supernatural aquatic beings. The specific legend of a large creature in Loch Ness, however, became most prominent in the modern era.</p>
+
+            <h2 id="modern">Modern Era Sightings</h2>
+            <p>The modern Loch Ness Monster legend began in earnest in 1933 when a new road was completed along the loch's shore, providing more access and visibility. In April 1933, a couple reported seeing an enormous animal rolling and plunging on the surface of the loch. Their account, published in the Inverness Courier, sparked widespread interest and led to numerous other reported sightings.</p>
+
+            <p>Throughout the 1930s and subsequent decades, hundreds of people reported seeing unusual phenomena in the loch. Witnesses described seeing large humps moving through the water, long necks breaking the surface, and disturbances that could not be easily explained by known animals or natural phenomena. These accounts varied in detail but often shared common elements of the creature's appearance.</p>
+
+            <h2 id="descriptions">Physical Descriptions</h2>
+            
+            <h3>Common Characteristics</h3>
+            <p>According to folklore and eyewitness reports, the Loch Ness Monster is typically described as having a long, slender neck attached to a bulky body with one or more humps visible above the water's surface. Estimates of its length vary considerably, ranging from 15 to 40 feet. The head is usually described as small and serpentine, sometimes compared to a horse or sheep.</p>
+
+            <p>The creature's skin color is most commonly reported as dark gray, brown, or black. Some accounts describe flippers or fins, while the number and arrangement of humps varies between reports. Movement through the water is typically described as smooth and rapid, creating a significant wake.</p>
+
+            <h3>Comparison to Plesiosaurs</h3>
+            <p>Many descriptions of Nessie have led to comparisons with plesiosaurs, marine reptiles that lived during the age of dinosaurs and became extinct approximately 66 million years ago. The long neck and aquatic nature of these prehistoric creatures match many aspects of Nessie folklore, though this comparison remains speculative and controversial.</p>
+
+            <h2 id="famous">Famous Evidence in the Legend</h2>
+            
+            <h3>The Surgeon's Photograph</h3>
+            <p>The most iconic image associated with the Loch Ness Monster is the "Surgeon's Photograph" from 1934, which appeared to show a long-necked creature emerging from the water. This photograph became emblematic of the legend and was widely circulated for decades. In 1994, it was revealed to have been a hoax created using a toy submarine with an attached model head and neck.</p>
+
+            <h3>Tim Dinsdale Film</h3>
+            <p>In 1960, aeronautical engineer Tim Dinsdale filmed what he claimed was the monster swimming across the loch. This footage has been analyzed extensively and remains a subject of debate among researchers and enthusiasts. Some interpret it as showing an animate object, while skeptics suggest it depicts a boat or other conventional explanation.</p>
+
+            <h3>Sonar Contacts</h3>
+            <p>Various sonar explorations of Loch Ness have reported unusual large contacts moving through the deep water. These readings have been interpreted by some as potential evidence of large unknown animals in the loch, though alternative explanations including fish shoals, debris, or equipment anomalies have also been proposed.</p>
+
+            <h2 id="investigations">Search Efforts</h2>
+            <p>Loch Ness has been the subject of numerous systematic searches and scientific investigations. These efforts have employed increasingly sophisticated technology including sonar scanning, underwater photography, DNA sampling, and even submarines. Major expeditions were conducted in the 1970s and have continued intermittently to the present day.</p>
+
+            <p>In 2003 and 2018, comprehensive sonar sweeps of the entire loch were conducted using modern equipment. While these searches documented the loch's depths and topography in unprecedented detail, they did not find conclusive evidence of large unknown animals. Environmental DNA studies have been conducted to identify all organisms living in the loch's ecosystem.</p>
+
+            <h2 id="cultural">Cultural Impact</h2>
+            <p>The Loch Ness Monster has become an integral part of Scottish culture and identity. Nessie is one of Scotland's most recognizable symbols and appears in tourism materials, local businesses, and popular culture worldwide. The legend generates significant tourism revenue for the region, with visitors from around the world coming to Loch Ness hoping to catch a glimpse of the creature.</p>
+
+            <p>The monster has inspired countless books, films, television programs, and documentaries. Museums and visitor centers around Loch Ness document the legend's history and the various search efforts. Nessie has become a beloved figure in popular culture, often portrayed in a friendly, whimsical manner rather than as a threatening creature.</p>
+
+            <h2 id="similar">Similar Lake Monsters in Folklore</h2>
+            <p>Loch Ness is not the only body of water with legends of mysterious creatures. Similar folklore exists around the world, including Champ in Lake Champlain (North America), Ogopogo in Lake Okanagan (Canada), and Morag in Loch Morar (Scotland). These legends share common themes of large aquatic animals in deep lakes, suggesting similar folkloric patterns across different cultures.</p>
+
+            <p>Many of these lake monster legends have historical roots in local folklore and indigenous traditions, which were later reinforced and elaborated upon in modern times. The phenomenon of lake monster folklore represents an interesting intersection of ancient storytelling traditions, human psychology, and the enduring mystery of unexplored natural environments.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>CryptidPedia - Documenting Cryptids in Folklore and Legend</p>
+        <p>Content available under Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
