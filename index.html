@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoPedia - Free Encyclopedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">InfoPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search InfoPedia...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="#">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="#">Main Page</a></li>
+                <li><a href="#">Contents</a></li>
+                <li><a href="#">Current Events</a></li>
+                <li><a href="#">Random Article</a></li>
+                <li><a href="#">About InfoPedia</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Categories</h3>
+            <ul>
+                <li><a href="#">Science</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Arts</a></li>
+                <li><a href="#">Geography</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Artificial Intelligence</h1>
+            
+            <div class="infobox">
+                <h3>Artificial Intelligence</h3>
+                <img src="https://via.placeholder.com/280x200/4A90E2/FFFFFF?text=AI+Concept" alt="AI Illustration">
+                <table>
+                    <tr>
+                        <td>Field:</td>
+                        <td>Computer Science</td>
+                    </tr>
+                    <tr>
+                        <td>Founded:</td>
+                        <td>1956</td>
+                    </tr>
+                    <tr>
+                        <td>Key People:</td>
+                        <td>Alan Turing, John McCarthy</td>
+                    </tr>
+                    <tr>
+                        <td>Applications:</td>
+                        <td>Machine Learning, Robotics, NLP</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>Artificial Intelligence (AI)</strong> is the simulation of human intelligence processes by machines, especially computer systems. These processes include learning, reasoning, and self-correction. AI has become one of the most transformative technologies of the 21st century, impacting nearly every aspect of modern life.</p>
+
+            <p>The field of AI research was founded at a conference at Dartmouth College in 1956, where the term "artificial intelligence" was coined. Since then, AI has experienced several cycles of optimism followed by disappointment and funding cuts, known as "AI winters," but has seen tremendous growth in recent years.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#history">History</a></li>
+                    <li>2. <a href="#types">Types of AI</a></li>
+                    <li>3. <a href="#applications">Applications</a></li>
+                    <li>4. <a href="#ethics">Ethics and Safety</a></li>
+                    <li>5. <a href="#future">Future Prospects</a></li>
+                </ul>
+            </div>
+
+            <h2 id="history">History</h2>
+            <p>The concept of artificial beings with intelligence can be traced back to ancient myths and legends. However, the formal study of AI began in the mid-20th century. In 1950, Alan Turing published his famous paper "Computing Machinery and Intelligence," which introduced the Turing Test as a criterion for machine intelligence.</p>
+
+            <p>The Dartmouth Conference of 1956 is widely considered the birth of AI as a field of study. Early AI research focused on symbolic methods and problem-solving. The 1960s and 1970s saw significant progress, with programs that could play checkers, prove mathematical theorems, and understand natural language to a limited extent.</p>
+
+            <h2 id="types">Types of AI</h2>
+            
+            <h3>Narrow AI</h3>
+            <p>Also known as Weak AI, this type of artificial intelligence is designed to perform a specific task. Most current AI applications fall into this category, including virtual assistants, recommendation systems, and image recognition software.</p>
+
+            <h3>General AI</h3>
+            <p>Also called Strong AI or AGI (Artificial General Intelligence), this refers to machines that would possess the ability to apply intelligence to any problem, rather than just one specific problem. True AGI remains theoretical and has not yet been achieved.</p>
+
+            <h3>Superintelligence</h3>
+            <p>This hypothetical form of AI would surpass human intelligence across all domains. It remains a topic of speculation and debate among researchers and philosophers.</p>
+
+            <h2 id="applications">Applications</h2>
+            <p>AI has found applications in numerous fields including healthcare (diagnosis and treatment planning), finance (fraud detection and algorithmic trading), transportation (autonomous vehicles), entertainment (content recommendation), and many others. Machine learning, a subset of AI, has become particularly prevalent in analyzing large datasets and making predictions.</p>
+
+            <h2 id="ethics">Ethics and Safety</h2>
+            <p>As AI systems become more powerful and prevalent, questions about their ethical use and safety have become increasingly important. Issues include algorithmic bias, privacy concerns, job displacement, and the long-term implications of advanced AI systems. Researchers and policymakers worldwide are working to develop frameworks for responsible AI development.</p>
+
+            <h2 id="future">Future Prospects</h2>
+            <p>The future of AI holds both exciting possibilities and significant challenges. Continued advances in computing power, algorithms, and data availability suggest that AI will continue to transform industries and society. However, ensuring that these technologies benefit humanity while minimizing risks remains a critical concern for researchers, developers, and policymakers.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>Text is available under the Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
