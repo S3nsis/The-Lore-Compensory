@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mothman - CryptidPedia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #a2a9b1;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c5f2d;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #a2a9b1;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8px 20px;
+        }
+
+        .nav-content a {
+            color: #0645ad;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .nav-content a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #a2a9b1;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 8px 0;
+        }
+
+        .sidebar a {
+            color: #0645ad;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            flex-grow: 1;
+            background-color: #fff;
+            border: 1px solid #a2a9b1;
+            padding: 20px 30px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: normal;
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: normal;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', Georgia, Times, serif;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .infobox {
+            float: right;
+            width: 280px;
+            margin: 0 0 15px 15px;
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 15px;
+        }
+
+        .infobox h3 {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .infobox img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .infobox table {
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .infobox td {
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        .infobox td:first-child {
+            font-weight: bold;
+            width: 40%;
+        }
+
+        a {
+            color: #0645ad;
+        }
+
+        a:visited {
+            color: #0b0080;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            min-width: 300px;
+        }
+
+        .toc h2 {
+            font-size: 16px;
+            border: none;
+            margin: 0 0 10px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin: 5px 0;
+        }
+
+        .toc a {
+            text-decoration: none;
+        }
+
+        .notice {
+            background-color: #fef6e7;
+            border: 1px solid #f0e0c0;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 30px auto 20px;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #a2a9b1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .infobox {
+                float: none;
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">CryptidPedia</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search cryptids...">
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-content">
+            <a href="mothman.html">Article</a>
+            <a href="#">Talk</a>
+            <a href="#">Edit</a>
+            <a href="#">History</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Navigation</h3>
+            <ul>
+                <li><a href="index.html">Main Page</a></li>
+                <li><a href="#">All Cryptids</a></li>
+                <li><a href="#">Recent Sightings</a></li>
+                <li><a href="#">Random Cryptid</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            
+            <h3 style="margin-top: 25px;">Featured Cryptids</h3>
+            <ul>
+                <li><a href="index.html">Bigfoot</a></li>
+                <li><a href="mothman.html">Mothman</a></li>
+                <li><a href="chupacabra.html">Chupacabra</a></li>
+                <li><a href="loch-ness-monster.html">Loch Ness Monster</a></li>
+                <li><a href="jersey-devil.html">Jersey Devil</a></li>
+                <li><a href="wendigo.html">Wendigo</a></li>
+            </ul>
+
+            <h3 style="margin-top: 25px;">By Type</h3>
+            <ul>
+                <li><a href="#">Humanoids</a></li>
+                <li><a href="#">Flying Creatures</a></li>
+                <li><a href="#">Aquatic</a></li>
+                <li><a href="#">Land Animals</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <h1>Mothman</h1>
+
+            <div class="notice">
+                <strong>Note:</strong> This article documents a cryptid from folklore and legend. The existence of this creature has not been scientifically verified.
+            </div>
+            
+            <div class="infobox">
+                <h3>Mothman</h3>
+                <img src="https://via.placeholder.com/280x200/4a4a4a/FFFFFF?text=Mothman" alt="Mothman illustration">
+                <table>
+                    <tr>
+                        <td>Other names:</td>
+                        <td>The Winged Man</td>
+                    </tr>
+                    <tr>
+                        <td>Region:</td>
+                        <td>Point Pleasant, West Virginia, USA</td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>Flying humanoid cryptid</td>
+                    </tr>
+                    <tr>
+                        <td>First reported:</td>
+                        <td>November 15, 1966</td>
+                    </tr>
+                    <tr>
+                        <td>Last reported:</td>
+                        <td>December 1967</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td>Large winged humanoid with glowing red eyes</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>Mothman</strong> is a winged humanoid creature that became central to the folklore of Point Pleasant, West Virginia, following a series of reported sightings between November 1966 and December 1967. The creature is typically described as a large, man-sized being with enormous wings and distinctive glowing red eyes that became the defining feature in eyewitness accounts.</p>
+
+            <p>The legend of Mothman has become one of the most well-documented modern cryptid stories in American folklore, with over one hundred people claiming to have witnessed the creature during the thirteen-month period known as the "Year of the Moth." The sightings ceased following the tragic collapse of the Silver Bridge on December 15, 1967, leading to speculation and folklore connecting the creature to the disaster.</p>
+
+            <div class="toc">
+                <h2>Contents</h2>
+                <ul>
+                    <li>1. <a href="#sightings">Initial Sightings</a></li>
+                    <li>2. <a href="#descriptions">Physical Descriptions</a></li>
+                    <li>3. <a href="#bridge">The Silver Bridge Connection</a></li>
+                    <li>4. <a href="#theories">Folkloric Interpretations</a></li>
+                    <li>5. <a href="#cultural">Cultural Legacy</a></li>
+                    <li>6. <a href="#similar">Similar Legends Worldwide</a></li>
+                </ul>
+            </div>
+
+            <h2 id="sightings">Initial Sightings</h2>
+            <p>The first widely publicized sighting occurred on November 15, 1966, when two young couples from Point Pleasant reported encountering a large creature with glowing red eyes near an abandoned World War II munitions plant known as the TNT Area. According to their account, the creature stood between six and seven feet tall and had wings folded against its back. When their car headlights illuminated it, the being spread its wings and took flight, following their vehicle as they sped away at speeds reportedly exceeding 100 miles per hour.</p>
+
+            <p>In the days following this initial report, numerous other residents came forward with their own accounts of similar encounters. Many of these sightings occurred in the same general area around the TNT plant, while others were reported throughout the Point Pleasant region and neighboring areas of West Virginia and Ohio.</p>
+
+            <h2 id="descriptions">Physical Descriptions</h2>
+            
+            <h3>Appearance</h3>
+            <p>According to folklore accounts, Mothman stood between six and seven feet tall with a wingspan estimated at ten to fifteen feet. The creature was described as having a humanoid shape but no discernible head, with the glowing red eyes appearing to be set into its chest or shoulders. Most witnesses described the body as being gray or brown in color, with some accounts mentioning a muscular build.</p>
+
+            <p>The most consistently reported feature across all sightings was the pair of large, glowing red eyes that appeared to hypnotize or terrify witnesses. Many who encountered the creature reported feeling an overwhelming sense of dread or foreboding, and some claimed to experience nightmares or psychological effects following their encounters.</p>
+
+            <h3>Behavior</h3>
+            <p>Witnesses described Mothman as capable of flying at remarkable speeds without appearing to flap its wings. The creature was said to make a variety of sounds, including high-pitched squeals and low mechanical humming. Most accounts portrayed it as non-aggressive but deeply unsettling, with the creature often appearing to observe witnesses before flying away.</p>
+
+            <h2 id="bridge">The Silver Bridge Connection</h2>
+            <p>On December 15, 1967, the Silver Bridge connecting Point Pleasant to Ohio collapsed during rush hour traffic, resulting in the deaths of 46 people. This tragic event occurred just over a year after the initial Mothman sightings began, and folklore soon connected the two events.</p>
+
+            <p>Following the bridge collapse, Mothman sightings in the Point Pleasant area virtually ceased, leading to speculation in local folklore that the creature had been either a harbinger of the disaster or was somehow connected to it. Some interpretations of the legend suggest Mothman was attempting to warn residents of the impending tragedy, while others view it as an omen of doom.</p>
+
+            <h2 id="theories">Folkloric Interpretations</h2>
+            
+            <h3>Native American Connections</h3>
+            <p>Some researchers have noted similarities between Mothman and various figures in Native American folklore. The creature has been compared to thunderbird legends and other winged entities from indigenous traditions, though no direct cultural connection to the Point Pleasant area has been established in historical records.</p>
+
+            <h3>Harbinger Theory</h3>
+            <p>Within the folklore that developed around Mothman, one prominent interpretation casts the creature as a harbinger or warning of disaster. Proponents of this view point to the timing of sightings and their cessation following the Silver Bridge collapse as evidence of this role.</p>
+
+            <h3>Supernatural Guardian</h3>
+            <p>An alternative folkloric interpretation suggests Mothman may have been attempting to protect or warn the community. This view emerged from accounts of witnesses who, despite their fear, felt the creature was not actively hostile toward them.</p>
+
+            <h2 id="cultural">Cultural Legacy</h2>
+            <p>Mothman has become an integral part of Point Pleasant's cultural identity. The town hosts an annual Mothman Festival that attracts thousands of visitors, and a twelve-foot-tall metallic statue of the creature stands in the downtown area. The Mothman Museum preserves artifacts, newspaper clippings, and eyewitness accounts from the original sighting period.</p>
+
+            <p>The legend gained wider cultural recognition through John Keel's 1975 book "The Mothman Prophecies" and the 2002 film adaptation starring Richard Gere. These works brought the folklore to a national and international audience, cementing Mothman's place in American cryptid legend.</p>
+
+            <h2 id="similar">Similar Legends Worldwide</h2>
+            <p>Folklore from various cultures around the world includes accounts of winged humanoid creatures. In Mexico, there are legends of the Lechuza, a witch that transforms into a large bird. Filipino folklore includes the Manananggal, a creature with bat-like wings. The similarity of these legends across different cultures suggests a common archetypal theme of winged humanoid beings in human folklore.</p>
+
+            <p>More recent reports of winged humanoids have emerged from other locations, including Chicago, Illinois, where numerous sightings were reported between 2017 and 2019. These contemporary accounts have drawn comparisons to the original Mothman legend and have contributed to the ongoing folklore surrounding such creatures.</p>
+        </main>
+    </div>
+
+    <footer>
+        <p>This page was last edited on January 22, 2026</p>
+        <p>CryptidPedia - Documenting Cryptids in Folklore and Legend</p>
+        <p>Content available under Creative Commons Attribution-ShareAlike License</p>
+    </footer>
+</body>
+</html>
